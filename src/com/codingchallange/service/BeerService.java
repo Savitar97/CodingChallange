@@ -60,7 +60,7 @@ public class BeerService {
                 = beer -> !isContainsIngredient(ingredient, beer);
         return dataStore.getBeers().stream()
                 .filter(beerNotContainsTheSpecificIngredient)
-                .toList();
+                .collect(Collectors.toUnmodifiableList());
     }
 
     private boolean isContainsIngredient(String ingredient, Beer beer) {
@@ -78,7 +78,7 @@ public class BeerService {
     public List<Beer> listBeersSortedByRemainingRatio() {
         return dataStore.getBeers().stream()
                 .sorted(Comparator.comparingDouble(this::getRemainIngredientRatio).reversed())
-                .toList();
+                .collect(Collectors.toUnmodifiableList());
     }
 
     public void WriteOutRemainingRatioForBeers(){

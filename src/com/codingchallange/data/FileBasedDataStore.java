@@ -8,6 +8,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FileBasedDataStore implements DataStore {
     private List<Beer> beers;
@@ -24,6 +25,7 @@ public class FileBasedDataStore implements DataStore {
 
     @Override
     public List<Beer> getBeers() {
-        return beers.stream().toList();
+        return beers.stream()
+                .collect(Collectors.toUnmodifiableList());
     }
 }
